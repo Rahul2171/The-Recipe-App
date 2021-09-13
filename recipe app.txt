@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<html>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+#div1
+{
+   background-color: #800080;
+   color: white;
+   font-align: center;
+   font-family: arial;
+   padding : 8px 90px 2px 50px; 
+  
+  
+}
+
+#i1
+{
+     font-size: 14px;
+     margin: 6px 60px 0px 80px;
+     height: 20px;
+     outline: none;
+}
+#b1,#b2
+{
+   background-color: #800080;
+   color: white;
+   font-align: center;
+   font-family: arial;
+   border :none; 
+   font-size: 23px;
+
+}
+
+#div3
+{
+    margin:  6px 60px 0px 80px ;
+}
+
+#div2
+{
+    color: white;
+    font-size: 20px;
+    margin: 6px 60px 0px 80px;
+}
+#t1
+{
+     margin: 30px 4px 0px 81px;
+     height: 200px;
+     width: 50%;
+     font-size: 20px;
+     outline: none;
+     
+}
+#i2
+{
+   margin: 30px 30px 4px 81px ;
+   outline: none;
+ 
+}
+
+
+
+.div5
+{
+   color: white;
+   background-color: purple;
+   margin: 8px ;
+
+}
+
+</style>
+<body style="background-color: black" >
+
+<div id="div1">
+<h1>THE RECIPE APP</h1>
+<p>What recipe do you want to save today ?</p>
+</div>
+
+<input  id="i1" placeholder="search" type="text" value="" onchange="searchrec()">
+
+<div id="div2">
+
+</div>
+
+<div id="div3">
+<button onclick="addrec()" id="b1">Add Recipe</button>
+</div>
+
+<div id="div4">
+  
+</div>
+
+<div id='div6'>
+
+</div>
+
+
+<script>
+
+
+let rec=[],title=[],flag=-1,inc=0,inc1=0,inc2=0,sh=-1;
+
+
+function list()
+{
+if(rec.length==0)
+{
+  document.getElementById("div2").innerHTML="<b>You currently have "+ rec.length + " recipes stored in your Recipe App!</b>";
+  
+}
+else
+{
+   document.getElementById("div2").innerHTML="<b>You currently have "
+   +rec.length+" recipes stored in your Recipe App!</b>";
+   
+}
+
+}
+
+list();
+
+function addrec()
+{
+
+
+   if(flag==-1)
+   {
+   
+   
+   document.getElementById("div4").innerHTML="<input id='i2' placeholder='Enter Title' value='' type='text' onchange='setti()'>"
+   
+    document.getElementById("div4").innerHTML+="<br><textarea id='t1' value='' onchange='setrec()'></textarea>"
+   }
+   
+   flag++;
+   
+document.getElementById("div6").innerHTML="<button id='b2' onclick='evalu()'   style='background-color:purple;border:none;margin:100px;font- size:100px;color:white;width:30%;height:60%'>Submit</button>"
+  
+}
+
+function setti()
+{
+  title.push(document.getElementById("i2").value);
+}
+
+function setrec()
+{
+
+  rec.push(document.getElementById("t1").value);
+
+}
+
+function evalu()
+{ 
+ 
+ document.getElementById("div4").innerHTML+="<div class='div5'><button style='background-color: purple;color: white;border:none;margin:0px' id='b4' onclick='show()'>"+"<b>"+title[inc2].toUpperCase()+"</b>"+"<br>"+"Click on Recipe name to get full recipe."+"</button></div>";
+ flag=-1;
+ inc2=inc2+1;
+ list();
+ sh=-1;
+}
+
+
+function show()
+{
+    if(sh==-1)
+    {
+    document.getElementById("div4").innerHTML+="<div       style='color:yellow'>"+rec[inc1]+" "+"</div><br>";
+    
+     inc1=inc1+1;
+     }
+    sh=sh+1; 
+}
+
+
+function searchrec()
+{
+     for(let start=0;start<title.length;start++)
+     {
+     
+      if(document.getElementById("i1").value==title[start])
+      {
+         document.getElementById("div4").innerHTML+="<divclass='div5'>"+"<b>"+rec[start].toUpperCase()+"<br>"+"</b>"+"    "+"Found in list."+"</div>";
+      } 
+      
+     }
+}
+
+
+
+</script>
+</body>
+</html>
